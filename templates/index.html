@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="main-container">
+        <div class="date-selection-section">
+            <h2 class="section-title">날짜를 선택해주세요</h2>
+            <div class="date-cards">
+                {% for date in dates %}
+                    <a href="{{ url_for('show_appointments', date=date) }}" class="date-card">
+                        <div class="date-number">{{ date.strftime('%m/%d') }}</div>
+                        <div class="date-day">{{ date.strftime('%a') }}</div>
+                    </a>
+                {% endfor %}
+            </div>
+            <p class="holiday-notice">일요일은 휴일입니다.</p>
+        </div>
+        
+        <div class="recent-appointments-section">
+            <h2 class="section-title">최근 예약 내역</h2>
+            {% if recent_appointments %}
+                <div class="recent-appointments">
+                    {% for appointment in recent_appointments %}
+                        <div class="appointment-card">
+                            <div class="appointment-header">
+                                <span class="appointment-date">{{ appointment.date }}</span>
+                                <span class="appointment-time">{{ appointment.start_time }} - {{ appointment.end_time }}</span>
+                            </div>
+                            <div class="appointment-details">
+                                <p><strong>고객명:</strong> {{ appointment.client_name }}</p>
+                                <p><strong>서비스:</strong> 
+                                    {% if appointment.service_type == 'cut' %}
+                                        컷
+                                    {% else %}
+                                        펌
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="view-all-link">
+                    <a href="{{ url_for('list_appointments') }}" class="btn btn-view-all">모든 예약 보기</a>
+                </div>
+            {% else %}
+                <p class="no-appointments">예약된 내용이 없습니다.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %} 

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 class="section-title">{{ date.strftime('%Y년 %m월 %d일') }} ({{ day_name }})</h2>
+    
+    <div class="time-slots-container">
+        {% for time, availability in available_slots.items() %}
+            <div class="time-slot">
+                <h3>{{ time }}</h3>
+                <div class="service-buttons">
+                    {% if availability.cut %}
+                        <button class="btn" onclick="showBookingForm('{{ time }}', 'cut')">컷 예약</button>
+                    {% else %}
+                        <button class="btn btn-disabled" disabled>컷 불가</button>
+                    {% endif %}
+                    
+                    {% if availability.perm %}
+                        <button class="btn" onclick="showBookingForm('{{ time }}', 'perm')">펌 예약</button>
+                    {% else %}
+                        <button class="btn btn-disabled" disabled>펌 불가</button>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <div id="booking-form" style="display: none; margin-top: 30px; border-top: 2px solid var(--medium-gray); padding-top: 20px;">
+        <h3 class="section-title">예약 정보 입력</h3>
+        <form action="{{ url_for('book_appointment') }}" method="post">
+            <input type="hidden" id="date-input" name="date" value="{{ date }}">
+            <input type="hidden" id="time-input" name="time" value="">
+            <input type="hidden" id="service-type-input" name="service_type" value="">
+            
+            <div class="form-group">
+                <label for="client-name">이름:</label>
+                <input type="text" id="client-name" name="client_name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="client-phone">전화번호:</label>
+                <input type="tel" id="client-phone" name="client_phone" required>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn">예약하기</button>
+                <button type="button" class="btn btn-cancel" onclick="hideBookingForm()">취소</button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="navigation-buttons">
+        <a href="{{ url_for('index') }}" class="btn" style="background-color: var(--secondary-color);">메인으로 돌아가기</a>
+        <a href="{{ url_for('list_appointments') }}" class="btn btn-view-all">예약 목록 보기</a>
+    </div>
+    
+    <script>
+        function showBookingForm(time, serviceType) {
+            document.getElementById('time-input').value = time;
+            document.getElementById('service-type-input').value = serviceType;
+            document.getElementById('booking-form').style.display = 'block';
+            
+            // 스크롤 위치 조정
+            document.getElementById('booking-form').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function hideBookingForm() {
+            document.getElementById('booking-form').style.display = 'none';
+        }
+    </script>
+{% endblock %} 

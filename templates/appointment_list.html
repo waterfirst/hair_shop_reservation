@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 style="font-size: 26px; text-align: center;">예약 목록</h2>
+    
+    {% if appointments %}
+        <div class="appointment-list">
+            {% for appointment in appointments %}
+                <div class="appointment-card">
+                    <div class="appointment-header">
+                        <span class="appointment-date">{{ appointment.date }}</span>
+                        <span class="appointment-time">{{ appointment.start_time }} - {{ appointment.end_time }}</span>
+                    </div>
+                    <div class="appointment-details">
+                        <p><strong>고객명:</strong> {{ appointment.client_name }}</p>
+                        <p><strong>연락처:</strong> {{ appointment.client_phone }}</p>
+                        <p><strong>서비스:</strong> 
+                            {% if appointment.service_type == 'cut' %}
+                                컷
+                            {% else %}
+                                펌
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="appointment-actions">
+                        <form action="{{ url_for('cancel_appointment', appointment_id=appointment.id) }}" method="post" onsubmit="return confirm('정말로 이 예약을 취소하시겠습니까?');">
+                            <button type="submit" class="btn btn-cancel">예약 취소</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="no-appointments">예약된 내용이 없습니다.</p>
+    {% endif %}
+    
+    <div style="margin-top: 30px; text-align: center;">
+        <a href="{{ url_for('index') }}" class="btn" style="background-color: #2196F3;">메인으로 돌아가기</a>
+    </div>
+{% endblock %} 
