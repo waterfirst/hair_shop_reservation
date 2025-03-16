@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>미용실 예약 시스템</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #4ecdc4;
+            --text-color: #2d3436;
+            --light-gray: #f5f6fa;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3 {
+            color: var(--text-color);
+            font-weight: 700;
+        }
+        
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            border-bottom: 2px solid #dfe6e9;
+            padding-bottom: 15px;
+        }
+        
+        h2 {
+            font-size: 28px;
+            margin: 30px 0 15px;
+            color: var(--secondary-color);
+        }
+        
+        p {
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 500;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover {
+            background-color: #e74c3c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .screenshot {
+            width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #636e72;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>미용실 예약 시스템</h1>
+        
+        <p>
+            이 프로젝트는 미용실을 위한 간단한 웹 기반 예약 시스템입니다. 특히 나이 든 분들이 쉽게 사용할 수 있도록 큰 폰트와 간단한 UI로 설계되었습니다.
+        </p>
+        
+        <div style="text-align: center;">
+            <a href="https://github.com/waterfirst/hair_shop_reservation" class="btn">GitHub 저장소 방문</a>
+        </div>
+        
+        <img src="https://via.placeholder.com/800x400?text=미용실+예약+시스템" alt="미용실 예약 시스템 스크린샷" class="screenshot">
+        
+        <h2>주요 기능</h2>
+        
+        <div class="features">
+            <div class="feature-card">
+                <h3>날짜 선택</h3>
+                <p>일주일 단위로 날짜를 표시하며, 일요일은 휴무로 설정됩니다.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>시간대별 예약</h3>
+                <p>각 시간대별로 예약 가능 여부를 확인하고 예약할 수 있습니다.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>서비스 선택</h3>
+                <p>컷(1시간)과 펌(2시간) 서비스를 선택할 수 있습니다.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>예약 관리</h3>
+                <p>예약 목록을 확인하고 필요한 경우 취소할 수 있습니다.</p>
+            </div>
+        </div>
+        
+        <h2>설치 방법</h2>
+        
+        <p>GitHub 저장소에서 코드를 클론하고 필요한 패키지를 설치한 후 실행할 수 있습니다. 자세한 내용은 GitHub 저장소의 README를 참조하세요.</p>
+        
+        <h2>기술 스택</h2>
+        
+        <p>이 프로젝트는 Python, Flask, SQLite, HTML/CSS/JavaScript를 사용하여 개발되었습니다.</p>
+        
+        <footer>
+            &copy; 2024 waterfirst. MIT 라이선스 하에 배포됩니다.
+        </footer>
+    </div>
+</body>
+</html> 
